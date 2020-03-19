@@ -3,6 +3,8 @@
 ## General set-up (Chirpstack)
 As it is described here https://www.chirpstack.io/overview/architecture/, there are two option on where the Chirpstack Gateway Bridge can reside - either on the gateway itself or the server. In our setup, the GW Bridge is on the server (on the local machine). It is between the Packet forwarder and MQTT broker. 
 
+System's architecture along with IPs and ports entities, can be found in *cms_architecture.png*.
+
 All installation steps were done according to this tutorial: https://www.chirpstack.io/guides/debian-ubuntu/.
 
 The configuration of the GW Bridge was not changed.
