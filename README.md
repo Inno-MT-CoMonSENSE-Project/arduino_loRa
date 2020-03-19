@@ -13,6 +13,8 @@ The network server’s configuration was changed according to the tutorial using
 
 Similarly, the application server’s configuration was modified according to the tutorial using the role and password created in the PostgreSQL. JWT secret was generated and provided also.
 
+Configuration files for every entity respectively, can be found in *Chirpstack_config_files* folder.
+
 Now all servers are setup and we can access the application server on http://localhost:8080/ with the following credentials:
 
 username: *admin*
