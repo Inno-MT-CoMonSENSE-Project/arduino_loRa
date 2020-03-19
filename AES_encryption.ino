@@ -33,10 +33,7 @@ void loop(){
   delay(3000);
 }
 
-void encrypte(){
-
-//---------------------------encrypt data-------------------------                                          
-
+void encrypte(){                                        
 
 
  String dataString = getTemperature();// get data
