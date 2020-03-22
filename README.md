@@ -37,7 +37,8 @@ The following needs to be created:
   - Gateway, where as a Gateway ID we use the ID of given Gateway
   - Application with a Service profile associated.
     - Device within an application needs to be created with Frame-counter validation *disabled*, Device profile associated and either given or randomly generated Device EUI.
-    - The newly created device need to have an Activation configured, where both Network session key and Application session key are generated randomly. ??? Uplink and Downlink frame-counter were configured with random values ??? 
+    - The newly created device need to have an Activation configured because we are using ABP (Activation-by-personalisation), where both Network session key and Application session key needs to be provided, we generate them randomly on the application server. 
+    -  When registering a new device, Uplink and Downlink frame-counter are set to 0. More on the matter of frame counters here: https://www.thethingsnetwork.org/docs/lorawan/security.html#frame-counters
 
 Once the Application server is configured, we can upload a sketch to Arduino.
 
