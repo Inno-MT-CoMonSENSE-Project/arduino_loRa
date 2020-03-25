@@ -50,3 +50,9 @@ The following were used as inspiration and tutorials:
 The *temp_humidity_LPP.ino* is a sketch which measures temperature and humidity of surroundings, encode data to Cayenne LPP format and send them to the gateway and up to application server.
 
 There is a need to update the NwkSKey - network session key, AppSKey - application session key and DevAddr - end-device address with values chosen/generated during device Activation configuration in the previous step.
+
+# Arduino-LMIC library
+According to this forum (https://www.thethingsnetwork.org/forum/t/overview-of-lorawan-libraries-howto/24692), the first Arduino LMIC implementation was LMIC-Arduino (https://github.com/matthijskooijman/arduino-lmic) which has long served as the reference implementation but it is no longer maintained. The new reference implementation is https://github.com/mcci-catena/arduino-lmic. 
+
+As explained in readme of the new reference implemenation, we might have a problems with memory available as:
+  - This library can be quite heavy on small systems, especially if the fairly small ATmega 328p (such as in the Arduino Uno) is used. In the default configuration, the available 32K flash space is nearly filled up (this includes some debug output overhead, though). By disabling some features in project_config/lmic_project_config.h (like beacon tracking and ping slots, which are not needed for Class A devices), some space can be freed up.
