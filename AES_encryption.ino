@@ -5,7 +5,7 @@
 #include "Arduino.h"
 #include "Wire.h" 
 
-const char PROGMEM key[16] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};//16bytes key,
+const char PROGMEM key[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15};//16bytes key,
 
 void setup(){
  Serial.begin(9600);
