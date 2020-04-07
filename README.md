@@ -56,3 +56,11 @@ According to this forum (https://www.thethingsnetwork.org/forum/t/overview-of-lo
 
 As explained in readme of the new reference implemenation, we might have a problems with memory available as:
   - This library can be quite heavy on small systems, especially if the fairly small ATmega 328p (such as in the Arduino Uno) is used. In the default configuration, the available 32K flash space is nearly filled up (this includes some debug output overhead, though). By disabling some features in project_config/lmic_project_config.h (like beacon tracking and ping slots, which are not needed for Class A devices), some space can be freed up.
+
+# ADR - Adaptive Data Rate
+some articles on ADR and LoRaWAN specifications and limitation
+https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate.html
+https://www.sghoslya.com/p/how-does-lorawan-nodes-changes-their.html
+https://arxiv.org/pdf/1808.09286.pdf
+https://lora-alliance.org/sites/default/files/2018-05/2015_-_lorawan_specification_1r0_611_1.pdf#page=34
+https://www.disk91.com/2017/technology/internet-of-things-technology/all-what-you-need-to-know-about-regulation-on-rf-868mhz-for-lpwan/
