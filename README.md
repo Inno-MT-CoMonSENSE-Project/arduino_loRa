@@ -59,8 +59,9 @@ As explained in readme of the new reference implemenation, we might have a probl
 
 # ADR - Adaptive Data Rate
 some articles on ADR and LoRaWAN specifications and limitation
-https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate.html
-https://www.sghoslya.com/p/how-does-lorawan-nodes-changes-their.html
-https://arxiv.org/pdf/1808.09286.pdf
-https://lora-alliance.org/sites/default/files/2018-05/2015_-_lorawan_specification_1r0_611_1.pdf#page=34
-https://www.disk91.com/2017/technology/internet-of-things-technology/all-what-you-need-to-know-about-regulation-on-rf-868mhz-for-lpwan/
+
+  - https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate.html
+  - https://www.sghoslya.com/p/how-does-lorawan-nodes-changes-their.html
+  - https://arxiv.org/pdf/1808.09286.pdf
+  - https://lora-alliance.org/sites/default/files/2018-05/2015_-_lorawan_specification_1r0_611_1.pdf#page=34
+  - https://www.disk91.com/2017/technology/internet-of-things-technology/all-what-you-need-to-know-about-regulation-on-rf-868mhz-for-lpwan/
