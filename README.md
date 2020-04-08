@@ -65,3 +65,4 @@ some articles on ADR and LoRaWAN specifications and limitation
   - https://arxiv.org/pdf/1808.09286.pdf
   - https://lora-alliance.org/sites/default/files/2018-05/2015_-_lorawan_specification_1r0_611_1.pdf#page=34
   - https://www.disk91.com/2017/technology/internet-of-things-technology/all-what-you-need-to-know-about-regulation-on-rf-868mhz-for-lpwan/
+  - https://lora-developers.semtech.com/library/tech-papers-and-guides/understanding-adr/
