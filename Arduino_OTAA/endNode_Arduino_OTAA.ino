@@ -1,4 +1,4 @@
-// Import libraries used in the code. Need to add libraries for sensor if needed.
+// Import libraries. Need to add libraries for sensor if needed.
 #include <lmic.h>
 #include <hal/hal.h>
 
@@ -68,7 +68,6 @@ void onEvent (ev_t ev) {
             break;
         case EV_REJOIN_FAILED:
             Serial.println(F("EV_REJOIN_FAILED"));
-            break;
             break;
         case EV_TXCOMPLETE:
             Serial.println(F("EV_TXCOMPLETE (includes waiting for RX windows)"));
