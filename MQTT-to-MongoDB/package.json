@@ -1,0 +1,7 @@
+{
+    "name": "MQTT-to-MongoDB",
+    "dependencies": {
+        "mqtt": "1.4.15",
+        "mongodb": "4.2.7"
+    }
+}
