@@ -20,7 +20,7 @@ $ sudo apt-get install nodejs
 
 MQTT broker is installed together with a Chirpstack.io, the protocol is [Mosquitto](https://mosquitto.org/).
 
-You may also want to install **npm**, the Node.js package manager.
+You may also want to install ```npm```, the Node.js package manager.
 ```shell
 $ sudo apt-get install npm
 ```
