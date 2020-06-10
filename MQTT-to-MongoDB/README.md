@@ -29,7 +29,7 @@ $ sudo apt-get install npm
 Clone the repository and modify following files:
 
   - Update dependencies in **package.json** to versions of MQTT and MongoDB you are using.
-  - Update the configuration for MQTT and MongoDB in **config.js** based on your setup
+  - Update the configuration for MQTT and MongoDB in **config.js** based on your setup.
 
 Run **server.js**
 ```shell
