@@ -23,9 +23,26 @@ You need to have [Arduino IDE](https://www.arduino.cc/en/main/software) installe
  ### Gateway set-up
  We are using [Dragino LG01-N Single Channel Gateway](http://www.dragino.com/products/lora/item/143-lg01n.html), though for a real world implementation, it is not recommended to use Single-channel gateways as they are not LoRaWAN-compliant.
 
+First, set-up the LG01-N wireless connection:
   1. Connect PC to LG01-N’s LAN port via RJ45 cable. Gateway should be accesible on `10.130.1.1`
   2. Use browser to access the LG01-N via IP `10.130.1.1/cgi-bin/luci/admin`
-  
+  3. For login use *User name: root* and *Password: dragino*.
+  4. In Network --> Wireless, select *radio0* interface and select Scan. 
+  5. Select the desired Wireless access point, join the wifi network and enter its password.
+  6. In Network --> Wireless, Disable the WiFi AP with SSID: *dragino-xxxxxx* (the one on Mode: Master)
+
+Secondly, we need to configure the gateway so that it sends data to the ChirpStack Gateway Bridge component. In Service --> LoRaWan Gateway change the following entries:
+  - IoT Service --> LoRaWan/RAW forwarder
+  - Service Provider --> --custom--
+  - Server Address --> YOUR SERVER'S IP ADDRESS
+  - Server upstream Port --> 1700
+  - Server downstream  Port --> 1700
+  - Frequency (HZ) --> 868100000
+  - Spreading Factor --> SF7
+  - Coding Rate --> 4/5
+  - Signal Bandwidth --> 125 kHz
+
+
 `s`
  
  ### Chirpstack servers set-up
