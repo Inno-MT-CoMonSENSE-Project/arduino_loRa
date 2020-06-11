@@ -32,29 +32,37 @@ First, set-up the LG01-N wireless connection:
   6. In Network --> Wireless, Disable the WiFi AP with SSID: *dragino-xxxxxx* (the one on Mode: Master)
 
 Secondly, we need to configure the gateway so that it sends data to the ChirpStack Gateway Bridge component. In Service --> LoRaWan Gateway change the following entries:
-  - IoT Service --> LoRaWan/RAW forwarder
-  - Service Provider --> --custom--
+  - IoT Service --> *LoRaWan/RAW forwarder*
+  - Service Provider --> *--custom--*
   - Server Address --> YOUR SERVER'S IP ADDRESS
-  - Server upstream Port --> 1700
-  - Server downstream  Port --> 1700
-  - Frequency (HZ) --> 868100000
-  - Spreading Factor --> SF7
-  - Coding Rate --> 4/5
-  - Signal Bandwidth --> 125 kHz
+  - Server upstream Port --> *1700*
+  - Server downstream  Port --> *1700*
+  - Frequency (HZ) --> *868100000*
+  - Spreading Factor --> *SF7*
+  - Coding Rate --> *4/5*
+  - Signal Bandwidth --> *125 kHz*
 
 ### Chirpstack servers set-up
  To be written in seperate document. For now, follow [this](https://www.chirpstack.io/guides/debian-ubuntu/) set-up.
  
 ### Set-up on Chirpstack
-To successfully recive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway and Application. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. 
+To successfully receive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway and Application. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. 
 
-#### Network servers
+#### Network-servers
+In order to connect your ChirpStack Application Server instance with the ChirpStack Network Server instance, click Network servers and then *Add*. Fill a name of the Network server, so it is identifiable on the network. As the ChirpStack Network Server is installed on the same host as the ChirpStack Application Server in our case, use `127.0.0.1:8000` as network-server server. Then click Create Network Server.
 
 #### Service-profiles
+Click Service profiles and then *Create*. Fill a name for a service profile for easier identification. Pick a Network server you would like to associate with this service profile. Maximum allowed data-rate should be set to 5. Then click Create Service profile.
 
 #### Device-profiles
+Click Device profiles and then *Create*. In *General* tab, create a name for a device profile and pick a network server to associate it with. Then set:
+  - LoRaWAN MAC version --> *1.0.3*
+  - LoRaWAN Regional parameters version --> *B*
+
+In *Join (OTAA/ABP)* tab *Check* Device supports OTAA. In *Codec* tab pick *Cayenne LPP*. Then click Create Device profile.
 
 #### Gateways
+Click Gateways and then *Create*. Fill a Gateway name and description. For the Gateway ID you can choose your own (but do not forget to update it on a Gateway itself as well) or access the Gateway through browser on `10.130.1.1/cgi-bin/luci/admin` (if connected via RJ45 cable). Go to Services --> LoRaWan Gateway and copy the *Gateway ID* from there. Then choose a Network server you would like the gateway to connect to.
 
 #### Applications
 
@@ -65,7 +73,7 @@ Multiple devices can use the same AppEUI, but each device has its own
 DevEUI and AppKey.
 
 ## Installation
-Clone the repository and modify the Template sketch accoring to your needs. 
+Clone the repository and modify the Template sketch according to your needs. 
 
 For the Example sketch:
   - Connect the sensor's pins to Arduino as follows: 
@@ -81,3 +89,5 @@ For the Example sketch:
     - Download the [DHT 11 library](https://github.com/goodcheney/Lora/blob/patch-1/Lora%20Shield/Examples/DHTlib.zip) manually, unzip it and put it to Arduino installation location to \Arduino\libraries directory.
   - Load the Example sketch to Arduino.
   - Arduino joins the network and data can be seen on Chirpstack Application server under Applications/APPLILCATION_NAME/Devices/DEVICE_NAME
+  
+**TO DO:** *LMiC config.h modification*
