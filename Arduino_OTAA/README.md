@@ -1,3 +1,11 @@
+**TO DO:** 
+  - finish *devices*
+  - *LMiC config.h modification*
+  - CHANGE KEYS in sketch
+  - OTAA
+  - LMiC
+  - Cayanne LPP
+
 # Arduino based end-node sending data over LoRa to LoRaWAN network
 This sketch reads sensor's data, encode them to Cayanne LPP format and sends them via LoRa to a LoRaWAN network - [Chirpstack.io](https://www.chirpstack.io/) in a set interval.  It uses OTAA (Over-the-air activation) to join a LoRaWAN network and a set of keys to encrypt the communication between the end-node and Application server.
 
@@ -46,7 +54,7 @@ Secondly, we need to configure the gateway so that it sends data to the ChirpSta
  To be written in seperate document. For now, follow [this](https://www.chirpstack.io/guides/debian-ubuntu/) set-up.
  
 ### Set-up on Chirpstack
-To successfully receive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway and Application. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. 
+To successfully receive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway, Application and Device. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. 
 
 #### Network-servers
 In order to connect your ChirpStack Application Server instance with the ChirpStack Network Server instance, click Network servers and then *Add*. Fill a name of the Network server, so it is identifiable on the network. As the ChirpStack Network Server is installed on the same host as the ChirpStack Application Server in our case, use `127.0.0.1:8000` as network-server server. Then click Create Network Server.
@@ -62,15 +70,13 @@ Click Device profiles and then *Create*. In *General* tab, create a name for a d
 In *Join (OTAA/ABP)* tab *Check* Device supports OTAA. In *Codec* tab pick *Cayenne LPP*. Then click Create Device profile.
 
 #### Gateways
-Click Gateways and then *Create*. Fill a Gateway name and description. For the Gateway ID you can choose your own (but do not forget to update it on a Gateway itself as well) or access the Gateway through browser on `10.130.1.1/cgi-bin/luci/admin` (if connected via RJ45 cable). Go to Services --> LoRaWan Gateway and copy the *Gateway ID* from there. Then choose a Network server you would like the gateway to connect to.
+Click Gateways and then *Create*. Fill a Gateway name and description. For the Gateway ID you can choose your own (but do not forget to update it on a Gateway itself as well) or access the Gateway through browser on `10.130.1.1/cgi-bin/luci/admin` (if connected via RJ45 cable). Go to Services --> LoRaWan Gateway and copy the *Gateway ID* from there. Then choose a Network server you would like the gateway to connect to. Then click Create Gateway.
 
 #### Applications
-
+Click Applications and then *Create*. Fill Application name and description. Pick a Service profile to associated the application with. Then click Create Application.
  
-register your application and device with
-the things network, to set or generate an AppEUI, DevEUI and AppKey.
-Multiple devices can use the same AppEUI, but each device has its own
-DevEUI and AppKey.
+#### Devices
+Click Applications, pick one of applications from the list and then *Create*. Fill Device name and description. Pick a Device profile to associate with a device.
 
 ## Installation
 Clone the repository and modify the Template sketch according to your needs. 
@@ -89,5 +95,3 @@ For the Example sketch:
     - Download the [DHT 11 library](https://github.com/goodcheney/Lora/blob/patch-1/Lora%20Shield/Examples/DHTlib.zip) manually, unzip it and put it to Arduino installation location to \Arduino\libraries directory.
   - Load the Example sketch to Arduino.
   - Arduino joins the network and data can be seen on Chirpstack Application server under Applications/APPLILCATION_NAME/Devices/DEVICE_NAME
-  
-**TO DO:** *LMiC config.h modification*
