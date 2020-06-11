@@ -42,17 +42,22 @@ Secondly, we need to configure the gateway so that it sends data to the ChirpSta
   - Coding Rate --> 4/5
   - Signal Bandwidth --> 125 kHz
 
-
-`s`
- 
- ### Chirpstack servers set-up
+### Chirpstack servers set-up
  To be written in seperate document. For now, follow [this](https://www.chirpstack.io/guides/debian-ubuntu/) set-up.
  
- ### Device registration
-To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration.
+### Set-up on Chirpstack
+To successfully recive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway and Application. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. 
 
+#### Network servers
 
- - setup on Chirpstack
+#### Service-profiles
+
+#### Device-profiles
+
+#### Gateways
+
+#### Applications
+
  
 register your application and device with
 the things network, to set or generate an AppEUI, DevEUI and AppKey.
