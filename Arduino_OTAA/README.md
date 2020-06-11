@@ -20,8 +20,24 @@ assigned/generated for use with all further communication.
 ## Prerequisites
 You need to have [Arduino IDE](https://www.arduino.cc/en/main/software) installed, gateway running, [Chirpstack](https://www.chirpstack.io/) LoRaWAN network set-up and have a device registered on Chirpstack Application Server.
  
+ ### Gateway set-up
+ We are using [Dragino LG01-N Single Channel Gateway](http://www.dragino.com/products/lora/item/143-lg01n.html), though for a real world implementation, it is not recommended to use Single-channel gateways as they are not LoRaWAN-compliant.
+
+  1. Connect PC to LG01-N’s LAN port via RJ45 cable. Gateway should be accesible on `10.130.1.1`
+  2. Use browser to access the LG01-N via IP `10.130.1.1/cgi-bin/luci/admin`
+  
+`s`
+ 
+ ### Chirpstack servers set-up
+ To be written in seperate document. For now, follow [this](https://www.chirpstack.io/guides/debian-ubuntu/) set-up.
+ 
+ ### Device registration
+To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration.
+
+
  - setup on Chirpstack
- register your application and device with
+ 
+register your application and device with
 the things network, to set or generate an AppEUI, DevEUI and AppKey.
 Multiple devices can use the same AppEUI, but each device has its own
 DevEUI and AppKey.
