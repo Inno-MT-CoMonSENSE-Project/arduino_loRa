@@ -1,6 +1,5 @@
 **TO DO:** 
   - OTAA
-  - LMiC
   - Cayanne LPP
 
 # Arduino based end-node sending data over LoRa to LoRaWAN network
@@ -19,14 +18,19 @@ activation procedure where a DevAddr and session keys are
 assigned/generated for use with all further communication.
 
 ## LMiC (LoRa MAC in C)
-Download
+The Arduino IBM LoRaWAN C-library is a portable implementation of the LoRaWAN™ 1.0.2 end-device specification in the C programming language (“LMiC” stands for “LoRaWAN MAC in C”). The first Arduino LMiC implementation was [LMIC-Arduino](https://github.com/matthijskooijman/arduino-lmic) which has long served as the reference implementation but it is no longer maintained. The new reference implementation is [arduino-lmic](https://github.com/mcci-catena/arduino-lmic) by MCCI Catena. We are using the the former reference implementation of [LMIC-Arduino](https://github.com/matthijskooijman/arduino-lmic) because of the memory limitation of ATmega 328 (Arduino Uno) as the newest version of LMiC is memory heavy and uses almost all of the available 32K flash space
 
 ## Cayanne LPP
 
 ## Prerequisites
 You need to have [Arduino IDE](https://www.arduino.cc/en/main/software) installed, gateway running, [Chirpstack](https://www.chirpstack.io/) LoRaWAN network set-up and have a device registered on Chirpstack Application Server.
 
+**UPDATE**
+  - LMiC
+  - etc...
 ### LMiC library modification
+Download the [LMIC-Arduino](https://github.com/matthijskooijman/arduino-lmic). Add the library in Arduino IDE: *Sketch --> Include Library --> Add .ZIP Library...*. 
+
 We need need to change the Frequency Band to use with LG01-N. Locate a *config.h* file which path is `...\arduino\libraries\arduino-lmic \src\lmic\config.h.` and open it. Uncomment EU frequency and LG02_LG01 definition:
 ```C
 #define CFG_eu868 1
