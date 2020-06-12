@@ -1,5 +1,4 @@
 **TO DO:** 
-  - *LMiC config.h modification*
   - OTAA
   - LMiC
   - Cayanne LPP
@@ -20,18 +19,27 @@ activation procedure where a DevAddr and session keys are
 assigned/generated for use with all further communication.
 
 ## LMiC (LoRa MAC in C)
+Download
 
 ## Cayanne LPP
 
 ## Prerequisites
 You need to have [Arduino IDE](https://www.arduino.cc/en/main/software) installed, gateway running, [Chirpstack](https://www.chirpstack.io/) LoRaWAN network set-up and have a device registered on Chirpstack Application Server.
 
-**LMiC downloaded**
-  - Download
-  - config.h update
+### LMiC library modification
+We need need to change the Frequency Band to use with LG01-N. Locate a *config.h* file which path is `...\arduino\libraries\arduino-lmic \src\lmic\config.h.` and open it. Uncomment EU frequency and LG02_LG01 definition:
+```C
+#define CFG_eu868 1
+//#define CFG_us915 1
+//#define CFG_au921 1
+//#define CFG_as923 1
+//#define CFG_in866 1
+
+#define LG02_LG01 1
+```
  
- ### Gateway set-up
- We are using [Dragino LG01-N Single Channel Gateway](http://www.dragino.com/products/lora/item/143-lg01n.html), though for a real world implementation, it is not recommended to use Single-channel gateways as they are not LoRaWAN-compliant.
+### Gateway set-up
+We are using [Dragino LG01-N Single Channel Gateway](http://www.dragino.com/products/lora/item/143-lg01n.html), though for a real world implementation, it is not recommended to use Single-channel gateways as they are not LoRaWAN-compliant.
 
 First, set-up the LG01-N wireless connection:
   1. Connect PC to LG01-N’s LAN port via RJ45 cable. Gateway should be accesible on `10.130.1.1`
@@ -99,7 +107,7 @@ For the Example sketch:
     - Download the [DHT 11 library](https://github.com/goodcheney/Lora/blob/patch-1/Lora%20Shield/Examples/DHTlib.zip). Add the library in Arduino IDE: *Sketch --> Include Library --> Add .ZIP Library...*.
   - Open your Chirpstack application server in a browser (default `localhost:8080`), navigate to *Applications* and pick a desired application from the list.
   - Open the Example sketch and update:
-    - *DEVEUI*: In the application server, from the list of applications open a desired application. In the list of devices, find a desired device and copy its Device EUI. In the sketch, paste its value to `PROGMEM DEVEUI` in the HEX format (`0x12, 0x34, ...`).
+    - *DEVEUI*: In the application server, from the list of applications open a desired application. In the list of devices, find a desired device and copy its Device EUI. The value of DEVEUI must be in the HEX format (`0x12, 0x34, 0x56, ...`). Once in HEX format, we need to supply the DEVEUI with LSB (least significant bit) first. Therefore we need to rewrite it to `..., 0x56, 0x34, 0x12`. In the sketch, paste its value to `PROGMEM DEVEUI`.
     - *APPKEY*: From the list of devices, pick a desired device. Open *Keys (OTAA)* tab, uncover the Application key and copy it in HEX Array format. In the sketch, paste its value to `PROGMEM APPKEY`.
   - Save the sketch
   - Load the sketch to Arduino.
