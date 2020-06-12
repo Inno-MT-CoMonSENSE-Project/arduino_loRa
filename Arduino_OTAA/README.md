@@ -1,7 +1,5 @@
 **TO DO:** 
-  - finish *devices*
   - *LMiC config.h modification*
-  - CHANGE KEYS in sketch
   - OTAA
   - LMiC
   - Cayanne LPP
@@ -27,6 +25,10 @@ assigned/generated for use with all further communication.
 
 ## Prerequisites
 You need to have [Arduino IDE](https://www.arduino.cc/en/main/software) installed, gateway running, [Chirpstack](https://www.chirpstack.io/) LoRaWAN network set-up and have a device registered on Chirpstack Application Server.
+
+**LMiC downloaded**
+  - Download
+  - config.h update
  
  ### Gateway set-up
  We are using [Dragino LG01-N Single Channel Gateway](http://www.dragino.com/products/lora/item/143-lg01n.html), though for a real world implementation, it is not recommended to use Single-channel gateways as they are not LoRaWAN-compliant.
@@ -76,7 +78,9 @@ Click Gateways and then *Create*. Fill a Gateway name and description. For the G
 Click Applications and then *Create*. Fill Application name and description. Pick a Service profile to associated the application with. Then click Create Application.
  
 #### Devices
-Click Applications, pick one of applications from the list and then *Create*. Fill Device name and description. Pick a Device profile to associate with a device.
+Click Applications, pick one of applications from the list and then *Create*. Fill Device name and description. Generate new Device EUI (DEVEUI) or fill your own. Pick a Device profile to associate with a device. Then click Create Device.
+
+Open a device you just created and go to *Keys (OTAA)* tab. Generate new Application key (APPKEY) or fill your own. Then click Set Device-keys.
 
 ## Installation
 Clone the repository and modify the Template sketch according to your needs. 
@@ -92,6 +96,11 @@ For the Example sketch:
 
   - Download DHT 11 library:
     - Tools --> Manage Libraries --> Search for DHT 11 and install, or
-    - Download the [DHT 11 library](https://github.com/goodcheney/Lora/blob/patch-1/Lora%20Shield/Examples/DHTlib.zip) manually, unzip it and put it to Arduino installation location to \Arduino\libraries directory.
-  - Load the Example sketch to Arduino.
-  - Arduino joins the network and data can be seen on Chirpstack Application server under Applications/APPLILCATION_NAME/Devices/DEVICE_NAME
+    - Download the [DHT 11 library](https://github.com/goodcheney/Lora/blob/patch-1/Lora%20Shield/Examples/DHTlib.zip). Add the library in Arduino IDE: *Sketch --> Include Library --> Add .ZIP Library...*.
+  - Open your Chirpstack application server in a browser (default `localhost:8080`), navigate to *Applications* and pick a desired application from the list.
+  - Open the Example sketch and update:
+    - *DEVEUI*: In the application server, from the list of applications open a desired application. In the list of devices, find a desired device and copy its Device EUI. In the sketch, paste its value to `PROGMEM DEVEUI` in the HEX format (`0x12, 0x34, ...`).
+    - *APPKEY*: From the list of devices, pick a desired device. Open *Keys (OTAA)* tab, uncover the Application key and copy it in HEX Array format. In the sketch, paste its value to `PROGMEM APPKEY`.
+  - Save the sketch
+  - Load the sketch to Arduino.
+  - Arduino joins the network and data can be seen on Chirpstack Application server under Applications/APPLICATION_NAME/Devices/DEVICE_NAME
