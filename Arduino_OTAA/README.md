@@ -10,9 +10,9 @@ Data is encoded using [Cayenne LPP](https://github.com/myDevicesIoT/cayenne-docs
 | 1 Byte    | 1 Byte     | N Bytes| 1 Byte    | 1 Byte      | M Bytes| ... |
 
 There are two sketches available:
-  - Example: Reads data from [DHT11](https://learn.adafruit.com/dht) temperature and humidity sensor and sends the reading in 
+  - [Example](arduino_loRa/Arduino_OTAA/endNode_Arduino_OTAA_Example.ino): Reads data from [DHT11](https://learn.adafruit.com/dht) temperature and humidity sensor and sends the reading in 
   Cayenne LPP format to Chirpstack.
-  - Template: Functionally same as Example, however it is missing the Cayenne LPP encoding for a specific sensors as well as the sensor's data reading function and extra libraries.
+  - [Template](arduino_loRa/Arduino_OTAA/endNode_Arduino_OTAA_template.ino): Functionally same as Example, however it is missing the Cayenne LPP encoding for a specific sensors as well as the sensor's data reading function and extra libraries.
 
 ## LMiC (LoRa MAC in C)
 The Arduino IBM LoRaWAN C-library is a portable implementation of the LoRaWAN™ 1.0.2 end-device specification in the C programming language (“LMiC” stands for “LoRaWAN MAC in C”). The first Arduino LMiC implementation was [LMIC-Arduino](https://github.com/matthijskooijman/arduino-lmic) which has long served as the reference implementation but it is no longer maintained. The new reference implementation is [arduino-lmic](https://github.com/mcci-catena/arduino-lmic) by MCCI Catena. We are using the the former reference implementation of [LMIC-Arduino](https://github.com/matthijskooijman/arduino-lmic) because of the memory limitation of ATmega 328 (Arduino Uno) as the newest version of LMiC is memory heavy and uses almost all of the available 32K flash space
