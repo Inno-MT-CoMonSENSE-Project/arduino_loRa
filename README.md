@@ -1,4 +1,5 @@
 # CoMonSENSE-Project
+THIS README NEEDS UPDATE (18.6.)
 
 ## General set-up (Chirpstack)
 As it is described here https://www.chirpstack.io/overview/architecture/, there are two option on where the Chirpstack Gateway Bridge can reside - either on the gateway itself or the server. In our setup, the GW Bridge is on the server (on the local machine). It is between the Packet forwarder and MQTT broker. 
