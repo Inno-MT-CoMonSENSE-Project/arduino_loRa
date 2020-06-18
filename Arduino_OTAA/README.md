@@ -60,7 +60,7 @@ Secondly, we need to configure the gateway so that it sends data to the ChirpSta
  To be written in seperate document. For now, follow [this](https://www.chirpstack.io/guides/debian-ubuntu/) set-up.
  
 ### Set-up of the Chirpstack Application server
-To successfully receive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway, Application and Device. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. 
+To successfully receive data by Network and Application server, we need to set-up the configuration for Network server, Service profile, Device profile, Gateway, Application and Device. To access the ChirpStack Application Server web-interface, enter the IP address or hostname of you server, followed by *port 8080* which is a default configuration, e.g. `localhost:8080`. Then for login use *Username: admin* and *Password: admin*. Guide on how to set-up the Chirpstack Application server can be also found [here](https://www.chirpstack.io/guides/first-gateway-device/).
 
 #### Network-servers
 In order to connect your ChirpStack Application Server instance with the ChirpStack Network Server instance, click Network servers and then Add. Fill a name of the Network server, so it is identifiable on the network. As the ChirpStack Network Server is installed on the same host as the ChirpStack Application Server in our case, use `127.0.0.1:8000` as *network-server server*. Then click Create Network Server.
