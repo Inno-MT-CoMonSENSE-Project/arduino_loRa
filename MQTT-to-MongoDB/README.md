@@ -1,3 +1,6 @@
+# TO DO
+  - write about node modules
+
 # MQTT-to-MongoDB
 Node.js application that listens to MQTT topic and insert data to MongoDB.
 
