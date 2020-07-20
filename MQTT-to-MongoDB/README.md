@@ -35,6 +35,7 @@ cd MQTT-to-MongoDB
 sudo npm install mongodb
 sudo npm install mqtt
 ``` 
+Beaware that the mongodb version must be 2.x and not 3.x as there have been changes in a callback for the newer version (as explained [here](https://stackoverflow.com/questions/47662220/db-collection-is-not-a-function-when-using-mongoclient-v3-0/47662979#47662979)). This will be fixed in the future.
 
 Run **server.js**
 ```shell
