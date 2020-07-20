@@ -1,7 +1,19 @@
 # CoMonSENSE-Project
 THIS README NEEDS UPDATE (18.6.)
 
+MISSING:
+ - Intro
 ## General set-up (Chirpstack)
+The system can be broken into the following components:
+  - end node
+  - gateway
+  - server
+  - database
+
+These components are depicted in the diagram below:
+![System_architecture](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/commenSense_ach.jpg)
+
+
 As it is described here https://www.chirpstack.io/overview/architecture/, there are two option on where the Chirpstack Gateway Bridge can reside - either on the gateway itself or the server. In our setup, the GW Bridge is on the server (on the local machine). It is between the Packet forwarder and MQTT broker. 
 
 System's architecture along with IPs and ports entities, can be found in *cms_architecture.png*.
@@ -20,25 +32,7 @@ Configuration files for every entity respectively, can be found in *Chirpstack_c
 
 Then we have configured the LoRaWAN server settings and chose LoRaWAN forwarder as an IoT service and configured its server address (corresponding IP) and ports (port: *1700*). Also, the frequency of the radio is set to *868100000*.
 
-### Application server configuration
-Once all entities are configured, there is a need to properly set-up the application server. The application server on http://localhost:8080/ with the following credentials:
 
-  - Username: *admin*
-  - Password: *admin*
-
-The following needs to be created:
-  - Network server at: *localhost:8080*
-  - Service profile with previously created network server attached to it.
-  - Device profile:
-    - LoRaWAN MAC version is set to *1.0.2*
-    - LoRaWAN Regional Parameters version is set to *B*
-    - In CLASS-B tab, the fields are: *checked*, *30*, *every 8 seconds*, *5*, *1*
-    - In CLASS-C tab, the fields are: *checked*, *60*
-    - In CODEC tab, the Payload Codec is set to *Cayenne LPP*
-  - Gateway, where as a Gateway ID we use the ID of given Gateway
-  - Application with a Service profile associated.
-    - Device within an application needs to be created with Frame-counter validation *disabled*, Device profile associated and either given or randomly generated Device EUI.
-    - The newly created device need to have an Activation configured because we are using ABP (Activation-by-personalisation), where both Network session key and Application session key needs to be provided, we generate them randomly on the application server. 
     -  When registering a new device, Uplink and Downlink frame-counter are set to 0. More on the matter of frame counters here: https://www.thethingsnetwork.org/docs/lorawan/security.html#frame-counters
 
 Once the Application server is configured, we can upload a sketch to Arduino.
@@ -57,16 +51,3 @@ According to this forum (https://www.thethingsnetwork.org/forum/t/overview-of-lo
 
 As explained in readme of the new reference implemenation, we might have a problems with memory available as:
   - This library can be quite heavy on small systems, especially if the fairly small ATmega 328p (such as in the Arduino Uno) is used. In the default configuration, the available 32K flash space is nearly filled up (this includes some debug output overhead, though). By disabling some features in project_config/lmic_project_config.h (like beacon tracking and ping slots, which are not needed for Class A devices), some space can be freed up.
-
-# ADR - Adaptive Data Rate
-some articles on ADR and LoRaWAN specifications and limitation
-
-  - https://www.thethingsnetwork.org/docs/lorawan/adaptive-data-rate.html
-  - https://www.sghoslya.com/p/how-does-lorawan-nodes-changes-their.html
-  - https://arxiv.org/pdf/1808.09286.pdf
-  - https://lora-alliance.org/sites/default/files/2018-05/2015_-_lorawan_specification_1r0_611_1.pdf#page=34
-  - https://www.disk91.com/2017/technology/internet-of-things-technology/all-what-you-need-to-know-about-regulation-on-rf-868mhz-for-lpwan/
-  - https://lora-developers.semtech.com/library/tech-papers-and-guides/understanding-adr/
-
-# System architecture
-![System_architecture](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/commenSense_ach.jpg)
