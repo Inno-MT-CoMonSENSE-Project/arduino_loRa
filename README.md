@@ -1,22 +1,50 @@
 # CoMonSENSE-Project
-THIS README NEEDS UPDATE (18.6.)
+BEING UPDATED (27/07/2020)
 
 MISSING:
  - Intro
-## General set-up (Chirpstack)
+## General set-up
 The system can be broken into the following components:
-  - end node
-  - gateway
-  - server
-  - database
+  - End node
+  - Gateway
+  - Server
+  - Database
 
 These components are depicted in the diagram below:
 ![System_architecture](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/commenSense_ach.jpg)
 
+### End node
+The end node is the LoRaWAN device which sends data to the ChirpStack Network Server through a Gateway. We use [Arduino UNO](https://store.arduino.cc/arduino-uno-rev3) with [Lora Shield](https://www.dragino.com/products/lora/item/102-lora-shield.html) for an end node. The shield allows us to send data via LoRa to a gateway. It makes use of the LMIC library (portable implementation of the LoRa MAC specification) to provide protocol compliance. Sensors are connected to the Arduino (measuring temperature, humidity, etc.) and readings are sent over LoRa in [Cayenne LPP](https://github.com/myDevicesIoT/cayenne-docs/blob/master/docs/LORA.md#cayenne-low-power-payload) format.
 
-As it is described here https://www.chirpstack.io/overview/architecture/, there are two option on where the Chirpstack Gateway Bridge can reside - either on the gateway itself or the server. In our setup, the GW Bridge is on the server (on the local machine). It is between the Packet forwarder and MQTT broker. 
+### Gateway
+A LoRaWAN compliant Gateway listens to 8 or more channels simultaneously and forwards received data (from end nodes) to the network server. There is a software running on the gateway - Packet forwarder, responsible for receiving and sending. We use single channel gateway - [Dragino LG01-N](http://www.dragino.com/products/lora/item/143-lg01n.html) which can only receive on one channel and one spreading factor at the same time which makes it not LoRaWAN compliant and only suitable for prototyping.
 
-System's architecture along with IPs and ports entities, can be found in *cms_architecture.png*.
+### Server
+Four components are residing on the server:
+ - Chirpstack Gateway bridge
+ - MQTT broker
+ - Network server
+ - Application server
+ 
+#### Chirpstack Gateway bridge
+It is a service that sits between the Packet forwarder and MQTT broker and handles the communication with gateways. Its main responsibility is to convert the Packet Forwarder format into a ChirpStack Network Server common data-format (JSON and Protobuf). It can reside directly on the gateway itself or the server, as in our setup.
+
+#### MQTT broker
+MQTT is a bi-directional communication protocol. The broker acts as a post office. The recipient subscribes to a given Topic and will receive all messages published under this topic. It offers one to many capability - multiple clients can receive the message from a single broker, as well as many to one - multiple publishers can publish topics to a single subscriber. Each client can therefore both produce and receive data by both publishing and subscribing.
+
+#### Network server
+The ChirpStack Network Server is a LoRaWAN Network Server, responsible for managing the state of the network. It has knowledge of device activations on the network and is able to handle join-requests when devices want to join the network. The main responsibility of the network server is de-duplication of received LoRaWAN frames and handling of authentication, LoRaWAN mac-layer (and mac-commands), communication with the ChirpStack Application Server, or scheduling of downlink frames.
+
+#### Application server
+The ChirpStack Application Server is a LoRaWAN Application Server providing a web-interface and APIs for the management of users, organizations, applications, gateways, and devices. The data it receives is forwarded to configured integrations. It is responsible for the device "inventory" part of a LoRaWAN infrastructure, handling of join-request, and the handling and encryption of application payloads.
+
+### Database
+The application server does not provide persistent data storage, it only caches the received data. [MongoDB](https://www.mongodb.com/) is a database of choice in this project.
+
+
+DON'T FORGET THE BASIC FLOW AMONG ENTITIES
+
+
 
 All installation steps were done according to this tutorial: https://www.chirpstack.io/guides/debian-ubuntu/.
 
