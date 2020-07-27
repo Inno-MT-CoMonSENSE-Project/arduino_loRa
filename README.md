@@ -41,12 +41,15 @@ The ChirpStack Application Server is a LoRaWAN Application Server providing a we
 ### Database
 The application server does not provide persistent data storage, it only caches the received data. [MongoDB](https://www.mongodb.com/) is a database of choice in this project.
 
+## Installation
+The installation is performed on a single machine running an Ubuntu distribution of Linux. Chirpstack also provides a quickstart [tutorial](https://www.chirpstack.io/project/guides/debian-ubuntu/) for setting up a Chirpstack stack.
+
+
+
 
 DON'T FORGET THE BASIC FLOW AMONG ENTITIES
 
 
-
-All installation steps were done according to this tutorial: https://www.chirpstack.io/guides/debian-ubuntu/.
 
 The configuration of the GW Bridge was not changed.
 
