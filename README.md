@@ -171,6 +171,10 @@ sudo systemctl start chirpstack-network-server
 # start chirpstack-network-server on boot
 sudo systemctl enable chirpstack-network-server
 ```
+To see if everything is running correctly, you can print the ChirpStack Network Server log-output:
+```shell
+sudo journalctl -f -n 100 -u chirpstack-network-server
+```
 
 ## Application server
 Install the package:
@@ -198,36 +202,11 @@ sudo systemctl start chirpstack-application-server
 # start chirpstack-application-server on boot
 sudo systemctl enable chirpstack-application-server
 ```
-
-DON'T FORGET THE BASIC FLOW AMONG ENTITIES
-
-
-
-The configuration of the GW Bridge was not changed.
-
-In the PostgreSQL two roles, one for network and one for application server, were created along with associated passwords. Extensions created accordingly as well. 
-
-The network server’s configuration was changed according to the tutorial using the role and password created in the PostgreSQL and frequencies were setup based on *EU868*.
-
-Similarly, the application server’s configuration was modified according to the tutorial using the role and password created in the PostgreSQL. JWT secret was generated and provided also.
-
-Configuration files for every entity respectively, can be found in *Chirpstack_config_files* folder.
-
-Then we have configured the LoRaWAN server settings and chose LoRaWAN forwarder as an IoT service and configured its server address (corresponding IP) and ports (port: *1700*). Also, the frequency of the radio is set to *868100000*.
-
-
-    -  When registering a new device, Uplink and Downlink frame-counter are set to 0. More on the matter of frame counters here: https://www.thethingsnetwork.org/docs/lorawan/security.html#frame-counters
-
-Once the Application server is configured, we can upload a sketch to Arduino.
-
-The following were used as inspiration and tutorials:
-  - https://www.chirpstack.io/guides/first-gateway-device/
-  - https://www.youtube.com/watch?v=mkuS5QUj5Js
-
-## Measure temperature and humidity and send in Cayenne LPP form
-The *temp_humidity_LPP.ino* is a sketch which measures temperature and humidity of surroundings, encode data to Cayenne LPP format and send them to the gateway and up to application server.
-
-There is a need to update the NwkSKey - network session key, AppSKey - application session key and DevAddr - end-device address with values chosen/generated during device Activation configuration in the previous step.
+To see if everything is running correctly, you can print the ChirpStack Application Server log-output:
+```shell
+sudo journalctl -f -n 100 -u chirpstack-application-server
+```
+The application server is now running and its web interface can be accessed on ```http://localhost:8080``` (or IP address of the server followed by port ```8080```.
 
 # Arduino-LMIC library
 According to this forum (https://www.thethingsnetwork.org/forum/t/overview-of-lorawan-libraries-howto/24692), the first Arduino LMIC implementation was LMIC-Arduino (https://github.com/matthijskooijman/arduino-lmic) which has long served as the reference implementation but it is no longer maintained. The new reference implementation is https://github.com/mcci-catena/arduino-lmic. 
