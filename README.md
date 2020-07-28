@@ -1,8 +1,10 @@
 # CoMonSENSE-Project
-BEING UPDATED (28/07/2020)
+The need to detect pollution events in coastal waters is becoming critical in maintaining healthy aquatic ecosystems. Due to their characteristically short durations combined with infrequent sampling, the probability of detecting these events is extremely low and as such, they usually go undetected.
 
-MISSING:
- - Intro about the project
+For applications in which a limited number of small messages are adequate (such as on-site coastal water quality monitoring), Long Range (LoRa) communication technology is a very inexpensive solution that can reach considerable distances from the coastline. These systems do not require a local user to operate and transmit data, as they can enable long-term observations of coastal waters based on a large network of automated devices and sensors.
+
+This project looks into the creation of a prototype system for such use-case with the use of [ChirpStack](https://www.chirpstack.io/) as LoRaWAN Network Server stack.
+
 # General set-up
 The system can be broken into the following components:
   - End node
