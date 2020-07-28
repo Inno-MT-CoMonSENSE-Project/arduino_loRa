@@ -11,7 +11,7 @@ The system can be broken into the following components:
   - Database
 
 These components are depicted in the diagram below:
-![System_architecture](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/commenSense_ach.jpg)
+![System_architecture](arduino_loRa/commenSense_ach.jpg)
 
 ## End node
 The end node is the LoRaWAN device which sends data to the ChirpStack Network Server through a Gateway. We use [Arduino UNO](https://store.arduino.cc/arduino-uno-rev3) with [Lora Shield](https://www.dragino.com/products/lora/item/102-lora-shield.html) for an end node. The shield allows us to send data via LoRa to a gateway. It makes use of the LMIC library (portable implementation of the LoRa MAC specification) to provide protocol compliance. Sensors are connected to the Arduino (measuring temperature, humidity, etc.) and readings are sent over LoRa in [Cayenne LPP](https://github.com/myDevicesIoT/cayenne-docs/blob/master/docs/LORA.md#cayenne-low-power-payload) format.
@@ -44,7 +44,7 @@ The application server does not provide persistent data storage, it only caches 
 # Installation
 The installation is performed on a single machine running an Ubuntu distribution of Linux. Chirpstack also provides a quickstart [tutorial](https://www.chirpstack.io/project/guides/debian-ubuntu/) for setting up a Chirpstack stack.
 
-The installation can be broken into installation of:
+The installation can be broken into the installation of:
  - Dependencies
  - ChirpStack repository
  - Gateway bridge
@@ -55,12 +55,12 @@ The installation can be broken into installation of:
 The following dependencies need to be installed: 
  - MQTT broker - a bi-directional communication protocol (publish/subscribe).
  - Redis - An in-memory database used to store relatively transient data.
- - PostgreSQL - The long-term storage database used by the open source packages.
+ - PostgreSQL - The long-term storage database used by the open-source packages.
 
 ```shell
 sudo apt install mosquitto mosquitto-clients redis-server redis-tools postgresql
 ```
-To setup PostgreSQL databases and users enter the command line utility for PostgreSQL:
+To setup PostgreSQL databases and users enter the command-line utility for PostgreSQL:
 
 ```shell
 sudo -u postgres psql
@@ -92,7 +92,7 @@ create extension hstore;
 Do not forget to change *usernames* and *passwords*. Also, the entered *usernames* and *passwords* will be later used in ```chirpstack-network-server.toml``` and ```chirpstack-application-server.toml``` when updating the configuration files. 
 
 ## Setup Chirpstack software repository
-ChirpStack provides a repository that is compatible with the Ubuntu ```apt``` package system. First make sure that both ```dirmngr``` and ```apt-transport-https``` are installed and setup a key for the new repository:
+ChirpStack provides a repository that is compatible with the Ubuntu ```apt``` package system. First, make sure that both ```dirmngr``` and ```apt-transport-https``` are installed and then set-up a key for the new repository:
 
 ```shell
 sudo apt install apt-transport-https dirmngr
@@ -171,7 +171,7 @@ sudo systemctl start chirpstack-network-server
 # start chirpstack-network-server on boot
 sudo systemctl enable chirpstack-network-server
 ```
-To see if everything is running correctly, you can print the ChirpStack Network Server log-output:
+To see if everything is running correctly, you can print the ChirpStack Network server log-output:
 ```shell
 sudo journalctl -f -n 100 -u chirpstack-network-server
 ```
@@ -206,4 +206,4 @@ To see if everything is running correctly, you can print the ChirpStack Applicat
 ```shell
 sudo journalctl -f -n 100 -u chirpstack-application-server
 ```
-After installing the full ChirpStack stack, you should be able to navigate to the ChirpStack Application Server web-interface, which can be accessed on ```http://localhost:8080``` (or IP address of the server followed by port ```8080```). For setting up a device and gateway [continue here](Arduino_OTAA/README.md).
+After installing the full ChirpStack stack, you should be able to navigate to the ChirpStack Application server web-interface, which can be accessed on ```http://localhost:8080``` (or IP address of the server followed by port ```8080```). For setting up a device and gateway [continue here](Arduino_OTAA/README.md).
