@@ -124,7 +124,7 @@ Install the package:
 ```shell
 sudo apt install chirpstack-network-server
 ```
-The configuration file is located at ```/etc/chirpstack-network-server/chirpstack-network-server.toml``` and must be updated according to the band used (EU868) and database configuration 
+The configuration file is located at ```/etc/chirpstack-network-server/chirpstack-network-server.toml``` and must be updated according to the band used (EU868) and database configuration ([this step](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/README.md#dependencies), need to update  the *chirpstack_ns:dbpassword*.
 ```toml
 [general]
 log_level=4
@@ -163,8 +163,41 @@ net_id="000000"
   min_dr=0
   max_dr=5
   ```
+Then start the service:
+```shell
+# start chirpstack-network-server
+sudo systemctl start chirpstack-network-server
+
+# start chirpstack-network-server on boot
+sudo systemctl enable chirpstack-network-server
+```
 
 ## Application server
+Install the package:
+```shell
+sudo apt install chirpstack-application-server
+```
+
+The configuration file is located at ```/etc/chirpstack-application-server/chirpstack-application-server.toml``` and must be updated according to the database configuration ([this step](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/README.md#dependencies), need to update  the *chirpstack_as:dbpassword*. Also, the ```jwt_secret``` must be replaced with a random secret. ```openssl rand -base64 32``` can be used to generate one.
+
+```toml
+[general]
+log_level=4
+
+[postgresql]
+dsn="postgres://chirpstack_as:dbpassword@localhost/chirpstack_as?sslmode=disable"
+
+  [application_server.external_api]
+  jwt_secret=" "
+```
+Then start the service:
+```shell
+# start chirpstack-application-server
+sudo systemctl start chirpstack-application-server
+
+# start chirpstack-application-server on boot
+sudo systemctl enable chirpstack-application-server
+```
 
 DON'T FORGET THE BASIC FLOW AMONG ENTITIES
 
