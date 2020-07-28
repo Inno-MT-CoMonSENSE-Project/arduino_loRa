@@ -11,7 +11,7 @@ The system can be broken into the following components:
   - Database
 
 These components are depicted in the diagram below:
-![System_architecture](arduino_loRa/commenSense_ach.jpg)
+![System_architecture](https://github.com/Inno-MT-CoMonSENSE-Project/arduino_loRa/blob/master/commenSense_ach.jpg)
 
 ## End node
 The end node is the LoRaWAN device which sends data to the ChirpStack Network Server through a Gateway. We use [Arduino UNO](https://store.arduino.cc/arduino-uno-rev3) with [Lora Shield](https://www.dragino.com/products/lora/item/102-lora-shield.html) for an end node. The shield allows us to send data via LoRa to a gateway. It makes use of the LMIC library (portable implementation of the LoRa MAC specification) to provide protocol compliance. Sensors are connected to the Arduino (measuring temperature, humidity, etc.) and readings are sent over LoRa in [Cayenne LPP](https://github.com/myDevicesIoT/cayenne-docs/blob/master/docs/LORA.md#cayenne-low-power-payload) format.
