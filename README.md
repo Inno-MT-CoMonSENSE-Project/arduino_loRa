@@ -206,10 +206,4 @@ To see if everything is running correctly, you can print the ChirpStack Applicat
 ```shell
 sudo journalctl -f -n 100 -u chirpstack-application-server
 ```
-The application server is now running and its web interface can be accessed on ```http://localhost:8080``` (or IP address of the server followed by port ```8080```.
-
-# Arduino-LMIC library
-According to this forum (https://www.thethingsnetwork.org/forum/t/overview-of-lorawan-libraries-howto/24692), the first Arduino LMIC implementation was LMIC-Arduino (https://github.com/matthijskooijman/arduino-lmic) which has long served as the reference implementation but it is no longer maintained. The new reference implementation is https://github.com/mcci-catena/arduino-lmic. 
-
-As explained in readme of the new reference implemenation, we might have a problems with memory available as:
-  - This library can be quite heavy on small systems, especially if the fairly small ATmega 328p (such as in the Arduino Uno) is used. In the default configuration, the available 32K flash space is nearly filled up (this includes some debug output overhead, though). By disabling some features in project_config/lmic_project_config.h (like beacon tracking and ping slots, which are not needed for Class A devices), some space can be freed up.
+After installing the full ChirpStack stack, you should be able to navigate to the ChirpStack Application Server web-interface, which can be accessed on ```http://localhost:8080``` (or IP address of the server followed by port ```8080```). For setting up a device and gateway [continue here](Arduino_OTAA/README.md).
