@@ -1,7 +1,7 @@
 {
     "name": "MQTT-to-MongoDB",
     "dependencies": {
-        "mongodb": "^2.2.36",
+        "mongodb": "^3.6.1",
         "mqtt": "4.1.0"
     }
 }
